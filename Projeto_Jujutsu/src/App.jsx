@@ -1,19 +1,20 @@
 import { Routes, Route, Link } from 'react-router-dom'
-import './App.css'
+import Home from './pages/Home'
+import Jujutsu from './pages/Jujutsu'
 
 function App() {
   return (
     <div>
       <nav>
         <Link to="/">Home</Link>
-        <Link to="/pokemon">Pokémon</Link>
+        <Link to="/jujutsu">Jujutsu</Link>
       </nav>
 
       <hr />
 
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/pokemon" element={<Pokemon />} />
+        <Route path="/jujutsu" element={<Jujutsu />} />
       </Routes>
     </div>
   )

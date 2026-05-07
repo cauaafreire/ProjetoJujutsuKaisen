@@ -2,7 +2,7 @@ function Home(){
     return(
         <div>
             <h1>Seja bem-vindo</h1>
-            <p>Vamos usar a PokeAPI</p>
+            <p>Vamos usar a JJK API</p>
         </div>
     )
 }

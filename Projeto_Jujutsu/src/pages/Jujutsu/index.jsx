@@ -3,59 +3,60 @@ import "./style.css"
 
 // um vetor de objetos
 const jujutsuList = [
-    { id: 1, nome: "Bulbassauro" },
+    { id: 1, nome: "Yuji Itadori" },
+    { id: 2, nome: "Megumi Fushiguro" },
+    { id: 3, nome: "Nobara Kugisaki" },
+    { id: 4, nome: "Satoru Gojo" },
+    { id: 5, nome: "Yuta Okkotsu" },
+    { id: 6, nome: "Maki Zenin" },
 ]
 
 function Jujutsu() {
     const [jujutsuGlobal, setJujutsuGlobal] = useState(null)
 
-    const getPokemonData = (idJujutsu) => {
+    const getJujutsuData = (idJujutsu) => {
 
         // conexão com a api
-        const uri = `https://api.jujutsukaisenapi.site/api/v1/characters${idJujutsu}`
+        const uri = `https://api.jujutsukaisenapi.site/api/v1/characters/${idJujutsu}`
 
         fetch(uri)
             .then(res => res.json())
             .then(json => {
-                const pokemonFetch = {
+                const jujutsuFetch = {
                     nome: json.name,
-                    peso: json.weight,
-                    vida: json.stats[0].base_stat,
+                    idade: json.age,
                     altura: json.height,
-                    // é utilizado o [] por conta que dentro da api, esse objeto é um vetor
-                    imagem: json.sprites.other['official-artwork'].front_default
+                    imagem: json.image,
                 }
-                setPokemonGlobal(pokemonFetch)
-                console.log(pokemonFetch)
+                setJujutsuGlobal(jujutsuFetch)
+                console.log(jujutsuFetch)
             })
-            .catch(() => alert('Não foi possivel acessar os dados do pokémon'))
+            .catch(() => alert('Não foi possivel acessar os dados do personagem'))
     }
 
     return (
         <div className="container">
             <div className="header">
-                <h1>Lista de Pokémon</h1>
+                <h1>Lista de Personagens</h1>
             </div>
 
-            {pokemmonGlobal && (
-                <div className="pokemon-info">
-                    <h2>Nome: {pokemmonGlobal.nome}</h2>
-                    <p>Peso: {pokemmonGlobal.peso}</p>
-                    <p>Altura: {pokemmonGlobal.altura}</p>
-                    <p>Vida: {pokemmonGlobal.vida}</p>
-
-                    <img src src={pokemmonGlobal.imagem} alt={pokemmonGlobal.nome} />
+            {jujutsuGlobal && (
+                <div className="jujutsu-info">
+                    <h2>Nome: {jujutsuGlobal.nome}</h2>
+                    <h2>idade: {jujutsuGlobal.idade}</h2>
+                    <h2>altura: {jujutsuGlobal.altura}</h2>
+                    <img src src={jujutsuGlobal.imagem} alt={jujutsuGlobal.nome} />
                 </div>
             )}
 
-            {pokemonList.map((item) => (
+            {jujutsuList.map((item) => (
                 <div className="card" key={item.id}>
                     <p>{item.nome}</p>
-                    <button onClick={() => (getPokemonData(item.id))}>Saiba mais</button>
+                    <button onClick={() => (getJujutsuData(item.id))}>Saiba mais</button>
                 </div>
             ))}
         </div>
     )
 }
 
-export default Pokemon
+export default Jujutsu
